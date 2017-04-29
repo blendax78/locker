@@ -1,15 +1,15 @@
 // NOTE: 'Namespaced' variables and code and left in the global scope for the sake of demoing and testing.
 
 // Declares Javascript 'namespacing' and initializes router
-Salesloft = {};
-Salesloft.Views = {};
-Salesloft.Models = {};
-Salesloft.Collections = {};
-Salesloft.Router = {};
+UT = {};
+UT.Views = {};
+UT.Models = {};
+UT.Collections = {};
+UT.Router = {};
 
 function init() {
   // Basic Application Initialization.
-  Salesloft.Router.router = new Salesloft.Router.router();
+  UT.Router.router = new UT.Router.router();
   Backbone.history.start();
 }
 

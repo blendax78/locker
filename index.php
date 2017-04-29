@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-    <title>Connect Four</title>
+    <title>Locker Management</title>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-theme.min.css" type="text/css" />
     <link rel="stylesheet" href="/assets/stylesheets/style.css" type="text/css" />
@@ -29,6 +29,11 @@
   </nav>
 
     <div class="container">
+      <div class="row bottom-border">
+        <div id="enter-ticket-container" class="col-sm-6 col-md-6 col-lg-6"></div>
+        <div id="bag-dropoff-container" class="col-sm-6 col-md-6 col-lg-6"></div>
+        <hr/>
+      </div>
       <div class="row">
         <div id="ut-container"></div>
       </div>
@@ -47,14 +52,12 @@
         // Backbone Objects
         .script('/assets/js/application.js').wait()
         .script('/assets/js/router.js').wait()
-        .script('/assets/js/models/player.js')
-        .script('/assets/js/models/piece.js')
-        .script('/assets/js/models/game.js')
-        .script('/assets/js/models/match.js')
-        .script('/assets/js/collections/matches.js')
-        .script('/assets/js/collections/players.js')
-        .script('/assets/js/collections/pieces.js')
-        .script('/assets/js/collections/games.js')
+        .script('/assets/js/models/ticket.js')
+        .script('/assets/js/models/bag.js')
+        .script('/assets/js/collections/tickets.js')
+        .script('/assets/js/collections/bag.js')
+        .script('/assets/js/views/bagDropoff.js')
+        .script('/assets/js/views/enterTicket.js')
         .script('/assets/js/views/index.js').wait(function(){
           // Backbone Initialization
           init();
@@ -63,33 +66,46 @@
     </script>
 
   <!-- JS Templates -->
-    <script id="match_template" type="text/html">
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <table class="table table-striped table-bordered table-hover table-condensed">
-        <thead>
-        <tr><th>Match</th><th>Winner</th></tr>
-        </thead>
-        <tbody>
-        {{#matches}}
-        <tr>
-          <td>{{id}}</td>
-          <td>{{name}}</td>
-        </tr>
-        {{/matches}}
-        </tbody>
-      </table>
-    </div>
+    <script id="index_template" type="text/html">
+      <div class="row">
+        <div class="col-sm-8 col-md-8 col-lg-8">
+          <h2>Locker Statistics</h2>
+          <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <table class="table table-striped table-bordered table-hover table-condensed">
+                <tr><th colspan="2">Locker Usage</th></tr>
+                <tr><th>Small Lockers</th><td>1/1000</td></tr>
+                <tr><th>Medium Lockers</th><td>1/1000</td></tr>
+                <tr><th>Large Lockers</th><td>1/1000</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </script>
 
-    <script id="player_template" type="text/html">
-      <div class="col-sm-12 col-md-12 col-lg-12">
-        {{#currentPlayer}}
-          <h2>Current Player: {{name}} {{#winner}}<span class="red">WINNER</span>{{/winner}}</h2>
-          <input type="hidden" id="currentPlayer" value="{{id}}" />
-        {{/currentPlayer}}
-        {{#nextPlayer}}
-          <input type="hidden" id="nextPlayer" value="{{id}}" />
-        {{/nextPlayer}}
+    <script id="enter_ticket_template" type="text/html">
+      <div class="row">
+        <form class="form-inline">
+          <label for="enterTicket">Look Up Ticket # </label>
+          <input type="text" class="form-control" id="ticketNum" />
+          <button id="search-ticket" class="btn btn-primary">Search</button>
+        </form>
+      </div>
+    </script>
+
+    <script id="bag_dropoff_template" type="text/html">
+      <div class="row">
+        <form class="form-inline">
+          <label for="bagSize">Drop Off Bag: </label>
+          <select class="form-control mb-2 mr-sm-2 mb-sm-2" id="bagSize">
+            <option value="" selected>Select a Size:</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+          </select>
+          <button class="btn btn-primary" id="reserve-locker">Reserve Locker</button>
+        </form>
       </div>
     </script>
 

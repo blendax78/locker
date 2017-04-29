@@ -1,24 +1,32 @@
-    Salesloft.Router.router = Backbone.Router.extend({
+    UT.Router.router = Backbone.Router.extend({
 
     routes:
     {
-        // Call index() function on '/' route
-        "": "index"
+      // Call index() function on '/' route
+      "": "index"
     },
 
-    initialize: function()
-    {
+    initialize: function() {
+      this.tickets = new UT.Collections.Tickets();
+      this.bags = new UT.Collections.Bags();
+
+      this.views = [
+        'enterTicketView',
+        'bagDropoffView',
+        'indexView'
+      ];
     },
 
-    index: function()
-    {
-        // Basic route for main page
-        // Expects no inputs
-        // Loads Games collection and passes it to index view
-        var collection = new Salesloft.Collections.Games();
+    index: function() {      
+      var _this = this;
 
-        // return of Games from the server.
-        this.indexView = new Salesloft.Views.IndexView({ collection: collection });
+      this.indexView = new UT.Views.IndexView({ bags: this.bags, tickets: this.tickets });
+      this.enterTicketView = new UT.Views.EnterTicketView({ bags: this.bags, tickets: this.tickets });
+      this.bagDropoffView = new UT.Views.BagDropoffView({ bags: this.bags, tickets: this.tickets });
+
+      $.each(this.views, function(index, viewName) {
+        _this[viewName].render();
+      });
     }
 
 });

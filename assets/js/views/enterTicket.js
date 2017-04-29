@@ -1,5 +1,6 @@
-UT.Views.IndexView = Backbone.View.extend({
-    el: '#ut-container',
+UT.Views.EnterTicketView = Backbone.View.extend({
+
+    el: '#enter-ticket-container',
 
     events: {
       // 'click .c4-tile': 'dropTile'
@@ -11,8 +12,9 @@ UT.Views.IndexView = Backbone.View.extend({
 
     render: function() {
       this.$el.html(
-        ich.index_template({})
+        ich.enter_ticket_template({})
       );
     }
 
 });
+
