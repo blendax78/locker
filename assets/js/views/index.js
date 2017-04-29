@@ -7,6 +7,7 @@ UT.Views.IndexView = Backbone.View.extend({
 
     initialize: function(options) {
       this.tickets = options.tickets;
+      this.bags = options.bags;
     },
 
     render: function() {

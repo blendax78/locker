@@ -55,7 +55,7 @@
         .script('/assets/js/models/ticket.js')
         .script('/assets/js/models/bag.js')
         .script('/assets/js/collections/tickets.js')
-        .script('/assets/js/collections/bag.js')
+        .script('/assets/js/collections/bags.js')
         .script('/assets/js/views/bagDropoff.js')
         .script('/assets/js/views/enterTicket.js')
         .script('/assets/js/views/index.js').wait(function(){
@@ -98,13 +98,13 @@
       <div class="row">
         <form class="form-inline">
           <label for="bagSize">Drop Off Bag: </label>
-          <select class="form-control mb-2 mr-sm-2 mb-sm-2" id="bagSize">
+          <select class="form-control mb-2 mr-sm-2 mb-sm-2" id="bag-size">
             <option value="" selected>Select a Size:</option>
             <option value="Small">Small</option>
             <option value="Medium">Medium</option>
             <option value="Large">Large</option>
           </select>
-          <button class="btn btn-primary" id="reserve-locker">Reserve Locker</button>
+          <button class="btn btn-primary disabled" id="reserve-locker">Reserve Locker</button>
         </form>
       </div>
     </script>
