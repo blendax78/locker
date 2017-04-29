@@ -1,0 +1,25 @@
+body {
+	margin-top: 80px;
+}
+
+#bookmark-container {
+	padding-top: 20px;
+}
+
+.c4-tile {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin: 5px;
+  text-align: center;
+  border-radius: 35px;
+  border: thin solid black;
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.red {
+  color: red;
+}
