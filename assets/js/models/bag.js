@@ -1,6 +1,7 @@
 UT.Models.Bag = Backbone.Model.extend({
-    initialize: function() {
-      this.size = '';
-      this.ticket = 0;
+    initialize: function(options) {
+      this.set('id', parseInt(this.cid.replace('c', '')));
+      this.set('size', options.size || '');
+      this.set('ticket', options.ticket || 0);
     },
 });

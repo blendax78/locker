@@ -10,7 +10,6 @@ UT.Views.BagDropoffView = Backbone.View.extend({
     initialize: function(options) {
       this.tickets = options.tickets;
       this.bags = options.bags;
-      this.newBag = {};
 
       _.bindAll(this, 'render', 'reserveLocker', 'enableSubmit', 'resetView');
     },
@@ -22,25 +21,32 @@ UT.Views.BagDropoffView = Backbone.View.extend({
     },
 
     enableSubmit: function() {
-      var size = $('#bag-size option:selected').val();
       if (size !== '') {
         $('#reserve-locker').removeClass('disabled');
       } else {
         $('#reserve-locker').addClass('disabled');
       }
 
-      this.newBag = {
-        size: size,
-        ticket: 1
-      };
     },
 
     reserveLocker: function(e) {
       e.preventDefault();
-      this.bags.add(new UT.Models.Bag(this.newBag));
+
+      var size = $('#bag-size option:selected').val();
+      var newTicket = new UT.Models.Ticket({
+        size: size
+      });
+
+      this.tickets.add(newTicket);
+
+      this.bags.add(
+        new UT.Models.Bag({
+          size: size,
+          ticket: newTicket.get('id')
+        })
+      );
 
       this.resetView();
-      console.log(this.bags);
     },
 
     resetView: function() {
