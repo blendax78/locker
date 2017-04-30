@@ -93,6 +93,7 @@
           <input type="text" class="form-control" id="ticket-num" />
           <button id="search-ticket" class="btn btn-primary disabled">Search</button>
         </form>
+        <div class="error-msg">{{error}}</div>
       </div>
     </script>
 
@@ -108,6 +109,7 @@
           </select>
           <button class="btn btn-primary disabled" id="reserve-locker">Reserve Locker</button>
         </form>
+        <div class="error-msg">{{error}}</div>
       </div>
     </script>
 

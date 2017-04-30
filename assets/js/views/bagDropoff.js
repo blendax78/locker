@@ -11,12 +11,12 @@ UT.Views.BagDropoffView = Backbone.View.extend({
       this.tickets = options.tickets;
       this.bags = options.bags;
 
-      _.bindAll(this, 'render', 'reserveLocker', 'enableSubmit', 'resetView');
+      _.bindAll(this, 'render', 'reserveLocker', 'enableSubmit');
     },
 
-    render: function() {
+    render: function(error) {
       this.$el.html(
-        ich.bag_dropoff_template({})
+        ich.bag_dropoff_template({ error: error })
       );
     },
 
@@ -34,9 +34,17 @@ UT.Views.BagDropoffView = Backbone.View.extend({
     reserveLocker: function(e) {
       e.preventDefault();
 
+      var size = this.tickets.getNextAvailable(this.size);
+
+      if (_.isUndefined(size)) {
+        // Nothing available
+        this.render('Sufficient locker space not available.');
+        return undefined;
+      }
+
       // Need to check for returning undefined
       var newTicket = new UT.Models.Ticket({
-        size: this.tickets.getNextAvailable(this.size)
+        size: size
       });
 
       var newBag = new UT.Models.Bag({
@@ -48,11 +56,8 @@ UT.Views.BagDropoffView = Backbone.View.extend({
       this.tickets.add(newTicket);
       this.bags.add(newBag);
 
-      this.resetView();
-    },
-
-    resetView: function() {
+      // Reset the view
       this.render();
-    }
+    },
 
 });

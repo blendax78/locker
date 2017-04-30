@@ -5,3 +5,8 @@ body {
 .bottom-border {
   border-bottom: thin solid #101010;
 }
+
+.error-msg {
+  color: red;
+  font-size: 10pt;
+}
