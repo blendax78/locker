@@ -2,7 +2,7 @@ UT.Views.IndexView = Backbone.View.extend({
     el: '#ut-container',
 
     events: {
-      'keyup #update-max': 'updateMax'
+      'click #update-max-change': 'updateMax'
     },
 
     initialize: function(options) {
@@ -20,10 +20,11 @@ UT.Views.IndexView = Backbone.View.extend({
       });
     },
 
-    updateMax: function() {
+    updateMax: function(e) {
+      e.preventDefault();
       var newMax = parseInt($('#update-max').val());
 
-      if (_.isNaN(newMax)) {
+      if (_.isNaN(newMax) || newMax < 1) {
         newMax = 1000;
       }
 

@@ -16,3 +16,7 @@ body {
   right: 25px;
   bottom: 25px;
 }
+
+.bold {
+  font-weight: bold;
+}

@@ -11,10 +11,11 @@ UT.Views.BagDropoffView = Backbone.View.extend({
       this.tickets = options.tickets;
       this.bags = options.bags;
 
-      _.bindAll(this, 'render', 'reserveLocker', 'enableSubmit');
+      _.bindAll(this, 'render', 'reserveLocker', 'enableSubmit', 'renderModal');
     },
 
     render: function(error) {
+      // $('#modal-container').html(ich.dropoff_modal_template({}));
       this.$el.html(
         ich.bag_dropoff_template({ error: error })
       );
@@ -29,6 +30,11 @@ UT.Views.BagDropoffView = Backbone.View.extend({
         $('#reserve-locker').addClass('disabled');
       }
 
+    },
+
+    renderModal: function(newTicket) {
+      $('#modal-container').html(ich.dropoff_modal_template({ ticket_num: newTicket.id, size: newTicket.size }));
+      $('#dropoffModal').modal();
     },
 
     reserveLocker: function(e) {
@@ -57,6 +63,7 @@ UT.Views.BagDropoffView = Backbone.View.extend({
       this.bags.add(newBag);
 
       // Reset the view
+      this.renderModal(newTicket.toJSON());
       this.render();
     },
 
