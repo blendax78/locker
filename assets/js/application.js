@@ -11,7 +11,7 @@ UT.Config = {};
 function init() {
   // Basic Application Initialization.
 
-  UT.Config.max = 5;//1000;
+  UT.Config.max = 1000;
   UT.Config.sizes = [ 'Small', 'Medium', 'Large'];
   UT.Router.router = new UT.Router.router();
 

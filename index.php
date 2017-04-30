@@ -83,13 +83,19 @@
             </div>
           </div>
         </div>
+        <div class="row bottom-right">
+          <form class="form-inline">
+            <label for="update-max">Max Lockers (dev): </label>
+            <input type="text" class="form-control" id="update-max" />
+          </form>
+        </div>
       </div>
     </script>
 
     <script id="enter_ticket_template" type="text/html">
       <div class="row">
         <form class="form-inline">
-          <label for="enterTicket">Look Up Ticket # </label>
+          <label for="ticket-num">Look Up Ticket # </label>
           <input type="text" class="form-control" id="ticket-num" />
           <button id="search-ticket" class="btn btn-primary disabled">Search</button>
         </form>

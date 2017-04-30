@@ -4,10 +4,6 @@ UT.Collections.Tickets = Backbone.Collection.extend({
     initialize: function() {
     },
 
-    getUsage: function() {
-
-    },
-
     getNextAvailable: function(size) {
       var groupings = this.getGroupings();
 
