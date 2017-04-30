@@ -74,9 +74,11 @@
             <div class="col-sm-6 col-md-6 col-lg-6">
               <table class="table table-striped table-bordered table-hover table-condensed">
                 <tr><th colspan="2">Locker Usage</th></tr>
-                <tr><th>Small Lockers</th><td>1/1000</td></tr>
-                <tr><th>Medium Lockers</th><td>1/1000</td></tr>
-                <tr><th>Large Lockers</th><td>1/1000</td></tr>
+                {{#groupings}}
+                  <tr><th>Small Lockers</th><td>{{#Small}}{{length}}{{/Small}}/{{max}}</td></tr>
+                  <tr><th>Medium Lockers</th><td>{{#Medium}}{{length}}{{/Medium}}/{{max}}</td></tr>
+                  <tr><th>Large Lockers</th><td>{{#Large}}{{length}}{{/Large}}/{{max}}</td></tr>
+                {{/groupings}}
               </table>
             </div>
           </div>
@@ -88,8 +90,8 @@
       <div class="row">
         <form class="form-inline">
           <label for="enterTicket">Look Up Ticket # </label>
-          <input type="text" class="form-control" id="ticketNum" />
-          <button id="search-ticket" class="btn btn-primary">Search</button>
+          <input type="text" class="form-control" id="ticket-num" />
+          <button id="search-ticket" class="btn btn-primary disabled">Search</button>
         </form>
       </div>
     </script>
@@ -100,9 +102,9 @@
           <label for="bagSize">Drop Off Bag: </label>
           <select class="form-control mb-2 mr-sm-2 mb-sm-2" id="bag-size">
             <option value="" selected>Select a Size:</option>
-            <option value="Small">Small</option>
-            <option value="Medium">Medium</option>
-            <option value="Large">Large</option>
+            <option value="0">Small</option>
+            <option value="1">Medium</option>
+            <option value="2">Large</option>
           </select>
           <button class="btn btn-primary disabled" id="reserve-locker">Reserve Locker</button>
         </form>

@@ -8,16 +8,14 @@ UT.Views.IndexView = Backbone.View.extend({
       this.tickets = options.tickets;
       this.bags = options.bags;
 
-      var _this = this;
-      this.tickets.on('change', function() {
-        console.log('rend');
-        _this.render();
-      });
+      this.tickets.on('add remove', function() {
+        this.render();
+      }, this);
     },
 
     render: function() {
       this.$el.html(
-        ich.index_template({})
+        ich.index_template({ groupings: this.tickets.getGroupings() })
       );
     }
 

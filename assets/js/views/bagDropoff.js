@@ -21,7 +21,9 @@ UT.Views.BagDropoffView = Backbone.View.extend({
     },
 
     enableSubmit: function() {
-      if (size !== '') {
+      this.size = parseInt($('#bag-size option:selected').val());
+
+      if (!_.isUndefined(this.size)) {
         $('#reserve-locker').removeClass('disabled');
       } else {
         $('#reserve-locker').addClass('disabled');
@@ -32,19 +34,19 @@ UT.Views.BagDropoffView = Backbone.View.extend({
     reserveLocker: function(e) {
       e.preventDefault();
 
-      var size = $('#bag-size option:selected').val();
+      // Need to check for returning undefined
       var newTicket = new UT.Models.Ticket({
-        size: size
+        size: this.tickets.getNextAvailable(this.size)
       });
 
-      this.tickets.add(newTicket);
+      var newBag = new UT.Models.Bag({
+        size: UT.Config.sizes[this.size],
+        ticket: newTicket.get('id')
+      });
 
-      this.bags.add(
-        new UT.Models.Bag({
-          size: size,
-          ticket: newTicket.get('id')
-        })
-      );
+      newTicket.set('bag', newBag.get('id'));
+      this.tickets.add(newTicket);
+      this.bags.add(newBag);
 
       this.resetView();
     },
