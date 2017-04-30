@@ -15,7 +15,6 @@ UT.Views.BagDropoffView = Backbone.View.extend({
     },
 
     render: function(error) {
-      // $('#modal-container').html(ich.dropoff_modal_template({}));
       this.$el.html(
         ich.bag_dropoff_template({ error: error })
       );
